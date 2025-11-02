@@ -120,4 +120,20 @@ class Biblioteca:
         print("="*70 + "\n")
         
         
+    def listar_disponibles(self):
+        disponibles = [lib for lib in self.__libros if lib.get_estado() == "disponible"]
+        
+        if not disponibles:
+            print("No hay libros disponibles")
+            return
+        
+        print("\n" + "="*70)
+        print("LIBROS DISPONIBLES")
+        print("="*70)
+        for i, libro in enumerate(disponibles, 1):
+            tipo = "[DIGITAL]" if isinstance(libro, LibroDigital) else "[FÍSICO]"
+            print(f"{i}. {tipo} {libro}")
+        print("="*70 + "\n")
+        
+        
     
