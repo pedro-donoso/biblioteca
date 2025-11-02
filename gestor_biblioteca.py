@@ -136,4 +136,16 @@ class Biblioteca:
         print("="*70 + "\n")
         
         
+    def marcar_prestado(self, titulo):
+        libro = self.buscar_libro(titulo)
+        libro.prestar()
+        print(f"Libro '{titulo}' marcado como prestado")
+        
+        
+    def devolver_libro(self, titulo):
+        libro = self.buscar_libro(titulo)
+        libro.devolver()
+        print(f"Libro '{titulo}' devuelto exitosamente")
+        
+        
     
