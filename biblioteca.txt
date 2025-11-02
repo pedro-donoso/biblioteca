@@ -1,0 +1,5 @@
+Don Quijote de la Mancha|Miguel de Cervantes|1605|disponible
+Cien Años de Soledad|Gabriel García Márquez|1967|prestado
+1984|George Orwell|1949|disponible
+DIGITAL|Clean Code|Robert C. Martin|2008|disponible|PDF
+DIGITAL|Python Crash Course|Eric Matthes|2019|prestado|ePub
