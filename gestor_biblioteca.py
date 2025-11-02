@@ -171,5 +171,16 @@ class Biblioteca:
         except Exception as e:
             print(f"Error al cargar archivo: {e}")
             
+     
+    def guardar_en_archivo(self):
+        try:
+            with open(self.__archivo, 'w', enconding='utf-8') as f:
+                for libro in self.__libros:
+                    f.write(libro.to_file_format() + '\n')
+            print(f"Se guardaron {len(self.__libros)} libro(s) en {self.__archivo}")
+        except Exception as e:
+            print(f"Error al guardar archivo: {e}")
             
+            
+       
                             
