@@ -29,7 +29,7 @@ class Libro:
         if estado in ["disponible", "prestado"]:
             self.__estado = estado
         else:
-            raise ValueError("Estado debe ser 'disponible" o "prestado")
+            raise ValueError("Estado debe ser 'disponible' o 'prestado'")
         
         
     def prestar(self):
@@ -68,13 +68,13 @@ class LibroDigital(Libro):
     
     
     def to_file_format(self):
-        return f"DIGITAL{super().to_file_format()}|{self.__formato}"
+        return f"DIGITAL|{super().to_file_format()}|{self.__formato}"
     
     
 class Biblioteca:
     def __init__(self, archivo="biblioteca.txt"):
         self.__libros = []
-        self._archivo = archivo
+        self.__archivo = archivo
         self.cargar_desde_archivo()
         
         
@@ -83,8 +83,8 @@ class Biblioteca:
             raise TypeError("Solo se pueden agregar objetos de tipo Libro")
         
         for lib in self.__libros:
-            if lib.get_titulo().lower() == libro.get_titulo.lower():
-                raise Exception(f"Ya existe un libro con el título '{libro.get_titulo}'")
+            if lib.get_titulo().lower() == libro.get_titulo().lower():
+                raise Exception(f"Ya existe un libro con el título '{libro.get_titulo()}'")
             
         self.__libros.append(libro)
         print(f"Libro '{libro.get_titulo()}' agregado exitosamente")
@@ -174,7 +174,7 @@ class Biblioteca:
      
     def guardar_en_archivo(self):
         try:
-            with open(self.__archivo, 'w', enconding='utf-8') as f:
+            with open(self.__archivo, 'w', encoding='utf-8') as f:
                 for libro in self.__libros:
                     f.write(libro.to_file_format() + '\n')
             print(f"Se guardaron {len(self.__libros)} libro(s) en {self.__archivo}")
@@ -254,7 +254,7 @@ def menu_principal():
         except ValueError as e:
             print(f"\n Error de valor: {e}")
         except Exception as e:
-            print(f"'n Error: {e}")
+            print(f"\n Error: {e}")
             
             
 if __name__ == "__main__":
