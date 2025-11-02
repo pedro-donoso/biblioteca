@@ -53,3 +53,21 @@ class Libro:
         return f"{self.__titulo}|{self.__autor}|{self.__anio}|{self.__estado}"
     
     
+class LibroDigital(Libro):
+    def __init__(self, titulo, autor, anio, formato, estado="disponible"):
+        super().__init__(titulo, autor, anio, estado)
+        self.__formato = formato
+        
+        
+    def get_formato(self):
+        return self.__formato
+    
+    
+    def __str__(self):
+        return f"{super().__str__()}, Formato: {self.__formato}"
+    
+    
+    def to_file_format(self):
+        return f"DIGITAL{super().to_file_format()}|{self.__formato}"
+    
+    
