@@ -182,5 +182,82 @@ class Biblioteca:
             print(f"Error al guardar archivo: {e}")
             
             
-       
+def menu_principal():
+    biblioteca = Biblioteca()
+    
+    while True:
+        print("\n" + "="*50)
+        print("GESTOR DE BIBLIOTECA")
+        print("="*50)
+        print("1. Agregar libro físico")
+        print("2. Agregar libro digital")
+        print("3. Eliminar libro")
+        print("4. Ver todos los libros")
+        print("5. Ver libros disponibles")
+        print("6. Buscar libro")
+        print("7. Marcar libro como prestado")
+        print("8. Devolver libro")
+        print("9. Salir")
+        print("="*50)
+        
+        try:
+            opcion = input("Elige una opción: ").strip()
+            
+            if opcion == "1":
+                print("\n--- AGREGAR LIBRO FÍSICO ---")
+                titulo = input("Título: ").strip()
+                autor = input("Autor: ").strip()
+                anio = int(input("Año de publicación: ").strip())
+                biblioteca.agregar_libro(Libro(titulo, autor, anio))
+                
+            elif opcion == "2":
+                print("\n--- AGREGAR LIBRO DIGITAL ---")
+                titulo = input("Titulo: ").strip()
+                autor = input("Autor: ").strip()
+                anio = int(input("Año de publicación: ").strip())
+                formato = input("Formato (PDF, ePub, MOBI, etc.): ").strip()
+                biblioteca.agregar_libro(LibroDigital(titulo, autor, anio, formato))
+                
+            elif opcion == "3":
+                titulo = input("\nTítulo del libro a eliminar: ").strip()
+                biblioteca.eliminar_libro(titulo)
+                
+            elif opcion == "4":
+                biblioteca.listar_libros()
+                
+            elif opcion == "5":
+                biblioteca.listar_disponibles()
+                
+            elif opcion == "6":
+                titulo = input("\nTítulo del libro a buscar: ").strip()
+                libro = biblioteca.buscar_libro(titulo)
+                tipo = "[DIGITAL]" if isinstance(libro, LibroDigital) else "[FÍSICO]"
+                print(f"\n Libro encontrado:\n {tipo} {libro}")
+                
+            elif opcion == "7":
+                titulo = input("\nTítulo del libro a prestar: ").strip()
+                biblioteca.marcar_prestado(titulo)
+                
+            elif opcion == "8":
+                titulo = input("\nTítulo del libro a devolver: ").strip()
+                biblioteca.devolver_libro(titulo)
+                
+            elif opcion == "9":
+                print("\n--- GUARDANDO CAMBIOS ---")
+                biblioteca.guardar_en_archivo()
+                print("\n¡Hasta pronto!")
+                break
+            
+            else:
+                print("\n Opción inválida. Por favor, elige una opción del 1 al 9.")
+                
+        except ValueError as e:
+            print(f"\n Error de valor: {e}")
+        except Exception as e:
+            print(f"'n Error: {e}")
+            
+            
+if __name__ == "__main__":
+    menu_principal() 
+            
                             
