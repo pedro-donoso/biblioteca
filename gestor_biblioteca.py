@@ -38,4 +38,18 @@ class Libro:
         self.__estado = "prestado"
         
         
+    def devolver(self):
+        if self.__estado == "disponible":
+            raise Exception(f"El libro '{self.__titulo}' ya está disponible")
+        self.__estado = "disponible"
+        
+        
+    def __str__(self):
+        return f"Titulo: {self.__titulo}, Autor: {self.__autor}, Año: {self.__anio}, Estado: {self.__estado}"
+    
+    
+    
+    def to_file_format(self):
+        return f"{self.__titulo}|{self.__autor}|{self.__anio}|{self.__estado}"
+    
     
