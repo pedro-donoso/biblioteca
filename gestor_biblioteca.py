@@ -148,4 +148,28 @@ class Biblioteca:
         print(f"Libro '{titulo}' devuelto exitosamente")
         
         
-    
+    def cargar_desde_archivo(self):
+        try:
+            with open(self.__archivo, 'r', encoding='utf-8') as f:
+                for linea in f:
+                    linea = linea.strip()
+                    if not linea:
+                        continue
+                    
+                    partes = linea.split('|')
+                    
+                    if partes[0] == "DIGITAL":
+                        libro = LibroDigital(partes[1], partes[2], int(partes[3]), partes[5], partes[4])
+                    else:
+                        libro = Libro(partes[0], partes[1], int(partes[2]), partes[3])
+                        
+                    self.__libros.append(libro)
+                    
+            print(f"Se cargaron {len(self.__libros)} libro(s) desde {self.__archivo}")
+        except FileNotFoundError:
+            print(f"Archivo '{self.__archivo}' no encontrado. Se creará uno nuevo.")
+        except Exception as e:
+            print(f"Error al cargar archivo: {e}")
+            
+            
+                            
