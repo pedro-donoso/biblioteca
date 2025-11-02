@@ -71,3 +71,53 @@ class LibroDigital(Libro):
         return f"DIGITAL{super().to_file_format()}|{self.__formato}"
     
     
+class Biblioteca:
+    def __init__(self, archivo="biblioteca.txt"):
+        self.__libros = []
+        self._archivo = archivo
+        self.cargar_desde_archivo()
+        
+        
+    def agregar_libro(self, libro):
+        if not isinstance(libro, Libro):
+            raise TypeError("Solo se pueden agregar objetos de tipo Libro")
+        
+        for lib in self.__libros:
+            if lib.get_titulo().lower() == libro.get_titulo.lower():
+                raise Exception(f"Ya existe un libro con el título '{libro.get_titulo}'")
+            
+        self.__libros.append(libro)
+        print(f"Libro '{libro.get_titulo()}' agregado exitosamente")
+        
+        
+    def eliminar_libro(self, titulo):
+        for i, libro in enumerate(self.__libros):
+            if libro.get_titulo().lower() == titulo.lower():
+                self.__libros.pop(i)
+                print(f" Libro '{titulo}' eliminado exitosamente")
+                return
+        raise Exception(f"No se encontró el libro '{titulo}'")
+    
+    
+    def buscar_libro(self, titulo):
+        for libro in self.__libros:
+            if libro.get_titulo().lower() == titulo.lower():
+                return libro
+        raise Exception(f"No se encontró el libro '{titulo}'")
+    
+    
+    def listar_libros(self):
+        if not self.__libros:
+            print("La biblioteca está vacía")
+            return
+        
+        print("\n" + "="*70)
+        print("CATÁLOGO DE LIBROS")
+        print("="*70)
+        for i, libro in enumerate(self.__libros, 1):
+            tipo = "[DIGITAL]" if isinstance(libro, LibroDigital) else "[FÍSICO]"
+            print(f"{i}. {tipo} {libro}")
+        print("="*70 + "\n")
+        
+        
+    
